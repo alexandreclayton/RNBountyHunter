@@ -1,6 +1,7 @@
 const Colors = {
-    iosButtonFontColor: 'rgb(0, 122, 255)',
-    androidButtonFontColor: '#000' 
+    iosButtonFont: 'rgb(0, 122, 255)',
+    androidButtonFont: '#fff' ,
+    itemSeparator: '#f7f7f7'
 }
 
 export default Colors;

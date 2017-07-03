@@ -1,21 +1,40 @@
-import { Platform } from 'react-native'
+import React from 'react'
+import { Platform, Image } from 'react-native'
 import { TabNavigator, StackNavigator } from 'react-navigation';
-import { FugitivesScreen, CapturedScreen } from './screens'
+import { FugitivesScreen, CapturedScreen, FugitivesDetailScreen } from './screens'
+import fugitivesImage from './assets/images/fugitives.png';
+import capturedImage from './assets/images/captured.png';
 
 const App = TabNavigator({
     Fugitives: {
         screen: StackNavigator({
-            Home: {
-                screen:FugitivesScreen
+            Fugitives: {
+                screen:FugitivesScreen,
+            },
+            FugitivesDetail: {
+                screen:FugitivesDetailScreen
             }
-        })
+        }),
+        navigationOptions: {
+            tabBarLabel: 'Fugitives',
+            tabBarIcon: ({ tintColor }) => (
+                <Image style={{width:53, height:25, tintColor}} source={fugitivesImage} />
+            )
+        }
+        
     },
     Captured: {
         screen: StackNavigator({
-            Home: {
+            Captured: {
                 screen: CapturedScreen
             }
-        })
+        }),
+        navigationOptions: {
+            tabBarLabel: 'Captured',
+            tabBarIcon: ({ tintColor }) => (
+                <Image style={{width:31, height:28, tintColor}} source={capturedImage} />
+            )
+        }
     }
 });
 

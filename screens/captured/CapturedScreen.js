@@ -1,16 +1,11 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
-import { FlatList, Image } from 'react-native'
-import ItemList from '../../components/ItemList'
-import capturedImage from '../../assets/images/captured.png';
+import { FlatList, StyleSheet } from 'react-native'
+import { ItemList, ItemSeparator } from '../../components'
 
 export default class CapturedScreen extends Component {
     static navigationOptions = {
-        label: 'Captured',
-        title: 'Captured',
-        tabBarIcon: ({ tintColor }) => (
-            <Image style={{width:31, height:28, tintColor}} source={capturedImage} />
-        )
+        title: 'Captured'
     }
     
     state ={
@@ -29,9 +24,18 @@ export default class CapturedScreen extends Component {
     render() {
         return (
             <FlatList 
+                style={styles.list}
                 data={this.state.fugitives}
                 renderItem={this.renderItem}
+                ItemSeparatorComponent = {ItemSeparator}
             />
         )
     }
 }
+
+const styles = StyleSheet.create({
+    list: {
+        flex:1, 
+        backgroundColor: 'white'
+    }
+})

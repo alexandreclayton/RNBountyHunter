@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import { FlatList, TouchableHighlight, Platform, Image } from 'react-native'
-import { ItemList, NavButton } from '../../components'
+import { FlatList, TouchableHighlight, Platform, Image, StyleSheet } from 'react-native'
+import { ItemList, NavButton, ItemSeparator } from '../../components'
 import fugitivesImage from '../../assets/images/fugitives.png';
 
 export default class FugitivesScreen extends Component {
     static navigationOptions = {
-        label: 'Fugitives',
         title: 'Fugitives',
         headerRight: (
             <NavButton name={ Platform.OS === "ios" ? "ios-add" : "md-add" } />
@@ -25,15 +24,26 @@ export default class FugitivesScreen extends Component {
     }
 
     renderItem = ({item}) => (
-        <ItemList title={item.key} />
+        <ItemList title={item.key} onPress={() => {
+                this.props.navigation.navigate('FugitivesDetail', { fugitive: item })
+            } } />
     )
 
     render() {
         return (
             <FlatList 
+                style={styles.list}
                 data={this.state.fugitives}
                 renderItem={this.renderItem}
+                ItemSeparatorComponent = {ItemSeparator}
             />
         )
     }
 }
+
+const styles = StyleSheet.create({
+    list: {
+        flex:1, 
+        backgroundColor: 'white'
+    }
+})
