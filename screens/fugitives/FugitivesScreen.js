@@ -1,17 +1,13 @@
 import React, { Component } from 'react'
-import { FlatList, TouchableHighlight, Platform, Image, StyleSheet } from 'react-native'
+import { FlatList, Platform, StyleSheet } from 'react-native'
 import { ItemList, NavButton, ItemSeparator } from '../../components'
-import fugitivesImage from '../../assets/images/fugitives.png';
 
 export default class FugitivesScreen extends Component {
     static navigationOptions = {
         title: 'Fugitives',
         headerRight: (
             <NavButton name={ Platform.OS === "ios" ? "ios-add" : "md-add" } />
-        ),
-        tabBarIcon: ({ tintColor }) => (
-            <Image style={{width:53, height:25, tintColor}} source={fugitivesImage} />
-        )
+        )    
     }
 
     state ={

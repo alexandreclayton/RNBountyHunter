@@ -18,7 +18,9 @@ export default class CapturedScreen extends Component {
     }
 
     renderItem = ({item}) => (
-        <ItemList title={item.key} />
+        <ItemList title={item.key} onPress={() => {
+                this.props.navigation.navigate('CapturedDetail', { fugitive: item })
+            } } />
     )
 
     render() {

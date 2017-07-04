@@ -1,5 +1,4 @@
-import FugitivesScreen from './fugitives/FugitivesScreen'
-import FugitivesDetailScreen from './fugitives/FugitivesDetailScreen'
-import CapturedScreen from './captured/CapturedScreen'
+import { FugitivesScreen,  FugitivesDetailScreen } from './fugitives/'
+import { CapturedScreen, CapturedDetailScreen } from './captured'
 
-export { FugitivesScreen, CapturedScreen, FugitivesDetailScreen }
+export { FugitivesScreen, CapturedScreen, FugitivesDetailScreen, CapturedDetailScreen }

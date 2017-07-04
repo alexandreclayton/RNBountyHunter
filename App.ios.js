@@ -1,7 +1,7 @@
 import React from 'react'
 import { Platform, Image } from 'react-native'
 import { TabNavigator, StackNavigator } from 'react-navigation';
-import { FugitivesScreen, CapturedScreen, FugitivesDetailScreen } from './screens'
+import { FugitivesScreen, CapturedScreen, FugitivesDetailScreen, CapturedDetailScreen } from './screens'
 import fugitivesImage from './assets/images/fugitives.png';
 import capturedImage from './assets/images/captured.png';
 
@@ -27,6 +27,9 @@ const App = TabNavigator({
         screen: StackNavigator({
             Captured: {
                 screen: CapturedScreen
+            },
+            CapturedDetail: {
+                screen: CapturedDetailScreen
             }
         }),
         navigationOptions: {
