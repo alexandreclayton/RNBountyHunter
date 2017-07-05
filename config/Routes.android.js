@@ -1,6 +1,9 @@
-import { StatusBar } from 'react-native'
 import { TabNavigator, StackNavigator } from 'react-navigation';
-import { FugitivesScreen, CapturedScreen, FugitivesDetailScreen, CapturedDetailScreen } from './screens'
+import {FugitivesScreen, 
+        CapturedScreen, 
+        FugitivesDetailScreen, 
+        CapturedDetailScreen,
+        AddFugitiveScreen } from '../screens'
 
 const App = StackNavigator({
     Home: {
@@ -18,8 +21,11 @@ const App = StackNavigator({
     },
     CapturedDetail: {
         screen: CapturedDetailScreen
+    },
+    AddFugitive: {
+        screen: AddFugitiveScreen
     }
+
 });
-StatusBar.setTranslucent(false);
 
 export default App;

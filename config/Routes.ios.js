@@ -1,11 +1,15 @@
 import React from 'react'
 import { Platform, Image } from 'react-native'
 import { TabNavigator, StackNavigator } from 'react-navigation';
-import { FugitivesScreen, CapturedScreen, FugitivesDetailScreen, CapturedDetailScreen } from './screens'
-import fugitivesImage from './assets/images/fugitives.png';
-import capturedImage from './assets/images/captured.png';
+import {FugitivesScreen, 
+        CapturedScreen, 
+        FugitivesDetailScreen, 
+        CapturedDetailScreen,
+        AddFugitiveScreen } from '../screens'
+import fugitivesImage from '../assets/images/fugitives.png';
+import capturedImage from '../assets/images/captured.png';
 
-const App = TabNavigator({
+const Root = TabNavigator({
     Fugitives: {
         screen: StackNavigator({
             Fugitives: {
@@ -41,4 +45,20 @@ const App = TabNavigator({
     }
 });
 
-export default App;
+const Routes = StackNavigator({
+    Home: {
+        screen: Root
+    },
+    AddFugitive: {
+        screen: StackNavigator({
+            Fugitive: {
+                screen: AddFugitiveScreen
+            }
+        })
+    }
+}, {
+    mode: 'modal',
+    headerMode: 'none'
+})
+
+export default Routes;

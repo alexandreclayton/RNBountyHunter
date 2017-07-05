@@ -6,7 +6,7 @@ const Touchable = Platform.OS === 'android' ? TouchableNativeFeedback : Touchabl
 const Button = (props) => {
     const formattedTitle = Platform.OS === 'android' ? props.title.toUpperCase() : props.title;
     return (
-        <Touchable>
+        <Touchable onPress={props.onPress}>
             <View style={[styles.button, props.style]}>
                 <Text style={[styles.text, props.color && {color: props.color}]}>{formattedTitle}</Text>
             </View>

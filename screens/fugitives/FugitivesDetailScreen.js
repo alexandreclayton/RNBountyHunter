@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     },
     button: {
         marginTop: 20,
-        alignItems: 'stretch',
         width: 200
     }
 
