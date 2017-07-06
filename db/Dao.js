@@ -12,19 +12,37 @@ export default class Dao {
                 photo text,
                 captured integer, 
                 capturedLong real,
-                capturedLat real)`, [], resolve, reject)
+                capturedLat real)`, [],  (_, result) => resolve(result), (_, error) =>reject(error))
         , reject)
     )
 
     static addFugitive = (name) => new Promise((resolve, reject) => 
         db.transaction(tx => 
-            tx.executeSql('insert into fugitives (name, captured) values (?, 0)', [name], resolve, reject)
+            tx.executeSql('insert into fugitives (name, captured) values (?, 0)', [name], (_, {rows}) => resolve(rows._array), (_, error) =>reject(error))
         , reject)
     )
 
     static listFugitives = (captured) => new Promise((resolve, reject) => 
         db.transaction(tx => 
-            tx.executeSql('select * from fugitives where captured = ?', [captured], (_, {rows})=>resolve(rows._array), reject)
+            tx.executeSql('select * from fugitives where captured = ?', [captured], (_, {rows}) => resolve(rows._array), (_, error) =>reject(error))
+        , reject)
+    )
+
+    static addFugitivePhoto = (id, uri) => new Promise((resolve, reject) => 
+        db.transaction(tx => 
+            tx.executeSql('update fugitives set photo=? where id=?', [uri, id], (_, {rows}) => resolve(rows._array), (_, error) =>reject(error))
+        , reject)
+    )
+
+    static removeFugitive = (id) => new Promise((resolve, reject) => 
+        db.transaction(tx => 
+            tx.executeSql('delete from fugitives where id=?', [id], (_, {rows}) => resolve(rows._array), (_, error) =>reject(error))
+        , reject)
+    )
+
+    static captureFugitive = (id) => new Promise((resolve, reject) => 
+        db.transaction(tx => 
+            tx.executeSql('update fugitives set captured=1 where id=?', [id], (_, {rows}) => resolve(rows._array), (_, error) =>reject(error))
         , reject)
     )
 

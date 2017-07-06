@@ -18,20 +18,19 @@ export default class FugitivesScreen extends Component {
     }
 
     componentWillMount() {
-        this.listener = EventRegister.addEventListener('reloadFugitives', this.loadFugitive)
+        this.listener = EventRegister.addEventListener('reloadFugitives', this.loadFugitives)
     }
     
     componentWillUnmount() {
         EventRegister.removeEventListener(this.listener)
     }
     componentDidMount() {
-        this.loadFugitive()
+        this.loadFugitives()
     }
 
-    loadFugitive = async () => {
+    loadFugitives = async () => {
         try {
-            const list = await Dao.listFugitives(0)
-            const fugitives = list.map(item => ({ key: item.name}))
+            const fugitives = await Dao.listFugitives(0)
             this.setState({fugitives})
 
         } catch (error) {
@@ -44,7 +43,7 @@ export default class FugitivesScreen extends Component {
     }
 
     renderItem = ({item}) => (
-        <ItemList title={item.key} onPress={() => {
+        <ItemList title={item.name} onPress={() => {
                 this.props.navigation.navigate('FugitivesDetail', { fugitive: item })
             } } />
     )
@@ -55,7 +54,8 @@ export default class FugitivesScreen extends Component {
                 style={styles.list}
                 data={this.state.fugitives}
                 renderItem={this.renderItem}
-                ItemSeparatorComponent = {ItemSeparator}
+                ItemSeparatorComponent={ItemSeparator}
+                keyExtractor={({id})=>id}
             />
         )
     }
