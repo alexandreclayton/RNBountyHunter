@@ -21,6 +21,11 @@ export default class CapturedDetailScreen extends Component {
         }
     }
 
+    showMap = () => {
+        const { fugitive } = this.props.navigation.state.params
+        this.props.navigation.navigate('Map', {fugitive})
+    }
+
     render() {
         const { fugitive } = this.props.navigation.state.params
         return (
@@ -28,6 +33,7 @@ export default class CapturedDetailScreen extends Component {
                 <Text style={styles.text}>Busted!</Text>
                 <Image resizeMode="contain"
                     source={!fugitive.photo ? burglarImage : {uri: fugitive.photo}} style={styles.photo}/>
+                <Button style={styles.button} title="Show On Map" onPress={this.showMap}/>
                 <Button style={styles.button} title="Delete" onPress={this.removeFugitive}/>
             </View>
         )

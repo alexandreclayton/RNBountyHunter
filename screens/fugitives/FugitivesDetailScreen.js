@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Image, Platform } from 'react-native'
-import { ImagePicker, Constants } from 'expo';
+import { ImagePicker, Constants, Permissions, Location } from 'expo';
 import { EventRegister } from 'react-native-event-listeners'
 import { Button } from '../../components'
 import Dao from '../../db/Dao'
@@ -13,6 +13,15 @@ export default class FugitivesDetailScreen extends Component {
 
     state = {
         photo: undefined
+    }
+
+    getLocation = async () => {
+        const { status } = await Permissions.askAsync(Permissions.LOCATION)
+        if (status !== 'granted') {
+            throw Error('Permission to access location was denied')
+        }
+        const location = await Location.getCurrentPositionAsync({})
+        return location.coords
     }
 
     addFoto = async () => {
@@ -49,7 +58,8 @@ export default class FugitivesDetailScreen extends Component {
     captureFugitive = async () => {
         try {
             const { fugitive } = this.props.navigation.state.params
-            await Dao.captureFugitive(fugitive.id)
+            const coords = await this.getLocation()
+            await Dao.captureFugitive(fugitive.id, coords.latitude, coords.longitude)
             EventRegister.emit('reloadFugitives')
             EventRegister.emit('reloadCaptured')
             this.props.navigation.goBack()

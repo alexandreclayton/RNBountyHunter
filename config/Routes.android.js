@@ -3,7 +3,8 @@ import {FugitivesScreen,
         CapturedScreen, 
         FugitivesDetailScreen, 
         CapturedDetailScreen,
-        AddFugitiveScreen } from '../screens'
+        AddFugitiveScreen,
+        MapScreen} from '../screens'
 
 const App = StackNavigator({
     Home: {
@@ -24,6 +25,9 @@ const App = StackNavigator({
     },
     AddFugitive: {
         screen: AddFugitiveScreen
+    },
+    Map: {
+        screen: MapScreen
     }
 
 });

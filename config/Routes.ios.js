@@ -5,7 +5,8 @@ import {FugitivesScreen,
         CapturedScreen, 
         FugitivesDetailScreen, 
         CapturedDetailScreen,
-        AddFugitiveScreen } from '../screens'
+        AddFugitiveScreen, 
+        MapScreen} from '../screens'
 import fugitivesImage from '../assets/images/fugitives.png';
 import capturedImage from '../assets/images/captured.png';
 
@@ -53,6 +54,13 @@ const Routes = StackNavigator({
         screen: StackNavigator({
             Fugitive: {
                 screen: AddFugitiveScreen
+            }
+        })
+    },
+    Map: {
+        screen: StackNavigator({
+            MapFugitive: {
+                screen: MapScreen
             }
         })
     }

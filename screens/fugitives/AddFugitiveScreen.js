@@ -34,7 +34,8 @@ export default class AddFugitiveScreen extends Component {
                 <View style={styles.inputContainer}>
                     <TextInput style={styles.input} value={this.state.name}
                         onChangeText={name=>this.setState({name})} 
-                        placeholder="Fugitive Name" />
+                        placeholder="Fugitive Name" 
+                        autoCapitalize="words"/>
                 </View>
                 <Button style={styles.button} title="Add" 
                    onPress={this.addFugitive} />

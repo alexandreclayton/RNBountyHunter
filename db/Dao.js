@@ -40,9 +40,10 @@ export default class Dao {
         , reject)
     )
 
-    static captureFugitive = (id) => new Promise((resolve, reject) => 
+    static captureFugitive = (id, latitude, longitude) => new Promise((resolve, reject) => 
         db.transaction(tx => 
-            tx.executeSql('update fugitives set captured=1 where id=?', [id], (_, {rows}) => resolve(rows._array), (_, error) =>reject(error))
+            tx.executeSql('update fugitives set captured=1, capturedLat=?, capturedLong=? where id=?', 
+                [latitude, longitude, id], (_, {rows}) => resolve(rows._array), (_, error) =>reject(error))
         , reject)
     )
 
