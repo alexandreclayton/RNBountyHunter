@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Image, Platform } from 'react-native'
+import { ScrollView, Text, StyleSheet, Image, Platform } from 'react-native'
 import { ImagePicker, Constants, Permissions, Location } from 'expo';
 import { EventRegister } from 'react-native-event-listeners'
 import { Button } from '../../components'
@@ -72,22 +72,22 @@ export default class FugitivesDetailScreen extends Component {
         const { photo } = this.state
         const { fugitive } = this.props.navigation.state.params
         return (
-            <View style={styles.container}>
+            <ScrollView contentContainerStyle={styles.container}>
                 <Text style={styles.text}>Still At Large</Text>
                 <Image resizeMode="contain"
                     source={!fugitive.photo && !this.state.photo ? burglarImage : {uri: fugitive.photo || this.state.photo}} style={styles.photo}/>
                 <Button style={styles.button} title="Add Photo" onPress={this.addFoto}/>
                 <Button style={styles.button} title="Capture" onPress={this.captureFugitive} />
                 <Button style={styles.button} title="Delete" onPress={this.removeFugitive} />
-            </View>
+            </ScrollView>
         )
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        alignItems: 'center',
+        paddingBottom: 20,
+        alignItems: 'center'
     },
     text: {
         marginTop: 20,

@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "rnbountyhunter",
-    "description": "An empty new project",
+    "description": "The React Native Bounty Hunter app implementation.",
     "slug": "rnbountyhunter",
     "privacy": "public",
     "sdkVersion": "18.0.0",
