@@ -1,5 +1,5 @@
 import { StatusBar, Platform } from 'react-native'
-import Routes from './config/Routes'
+import Routes from './routes/Routes'
 import Dao from './db/Dao'
 
 if (Platform.OS == 'android') {
